@@ -20,6 +20,15 @@ You can install STREAM-ZH directly from PyPI:
 ```python
 pip install stream_topic
 ```
+Please note that additional packages required for processing Chinese datasets may need to be installed
+```python
+pip install jieba
+pip install hanlp
+pip install thulac
+pip install snownlp
+pip install pkuseg
+pip install opencc
+```
 
 # 📦 Available Models
 STREAM-ZH inherits various neural and non-neural topic models provided by STREAM. Currently, the following models are implemented:
@@ -34,63 +43,63 @@ STREAM-ZH inherits various neural and non-neural topic models provided by STREAM
     </thead>
     <tbody>
       <tr>
-        <td><a href="https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf?ref=http://githubhelp.com">LDA</a></td>
+        <td>LDA</td>
         <td>Latent Dirichlet Allocation</td>
       </tr>
       <tr>
-        <td><a href="https://www.nature.com/articles/44565">NMF</a></td>
+        <td>NMF</td>
         <td>Non-negative Matrix Factorization</td>
       </tr>
       <tr>
-        <td><a href="https://arxiv.org/abs/2004.14914">WordCluTM</a></td>
+        <td>WordCluTM</td>
         <td>Tired of topic models?</td>
       </tr>
       <tr>
-        <td><a href="https://direct.mit.edu/coli/article/doi/10.1162/coli_a_00506/118990/Topics-in-the-Haystack-Enhancing-Topic-Quality?searchresult=1">CEDC</a></td>
+        <td>CEDC</td>
         <td>Topics in the Haystack</td>
       </tr>
       <tr>
-        <td><a href="https://arxiv.org/pdf/2212.09422.pdf">DCTE</a></td>
+        <td>DCTE</td>
         <td>Human in the Loop</td>
       </tr>
       <tr>
-        <td><a href="https://direct.mit.edu/coli/article/doi/10.1162/coli_a_00506/118990/Topics-in-the-Haystack-Enhancing-Topic-Quality?searchresult=1">KMeansTM</a></td>
+        <td>KMeansTM</td>
         <td>Simple Kmeans followed by c-tfidf</td>
       </tr>
       <tr>
-        <td><a href="https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=b3c81b523b1f03c87192aa2abbf9ffb81a143e54">SomTM</a></td>
+        <td>SomTM</td>
         <td>Self organizing map followed by c-tfidf</td>
       </tr>
       <tr>
-        <td><a href="https://ieeexplore.ieee.org/abstract/document/10066754">CBC</a></td>
+        <td>CBC</td>
         <td>Coherence based document clustering</td>
       </tr>
       <tr>
-        <td><a href="https://arxiv.org/pdf/2403.03737">TNTM</a></td>
+        <td>TNTM</td>
         <td>Transformer-Representation Neural Topic Model</td>
       </tr>
       <tr>
-        <td><a href="https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00325/96463/Topic-Modeling-in-Embedding-Spaces">ETM</a></td>
+        <td>ETM</td>
         <td>Topic modeling in embedding spaces</td>
       </tr>
       <tr>
-        <td><a href="https://arxiv.org/abs/2004.03974">CTM</a></td>
+        <td>CTM</td>
         <td>Combined Topic Model</td>
       </tr>
       <tr>
-        <td><a href="https://arxiv.org/abs/2303.14951">CTMNeg</a></td>
+        <td>CTMNeg</td>
         <td>Contextualized Topic Models with Negative Sampling</td>
       </tr>
       <tr>
-        <td><a href="https://arxiv.org/abs/1703.01488">ProdLDA</a></td>
+        <td>ProdLDA</td>
         <td>Autoencoding Variational Inference For Topic Models</td>
       </tr>
       <tr>
-        <td><a href="https://arxiv.org/abs/1703.01488">NeuralLDA</a></td>
+        <td>NeuralLDA</td>
         <td>Autoencoding Variational Inference For Topic Models</td>
       </tr>
       <tr>
-        <td><a href="https://arxiv.org/abs/2008.13537">NSTM</a></td>
+        <td>NSTM</td>
         <td>Neural Topic Model via Optimal Transport</td>
       </tr>
     </tbody>
@@ -109,31 +118,31 @@ STREAM-ZH inherits all the evaluation metrics of STREAM, including intruder, div
   </thead>
   <tbody>
     <tr>
-      <td><a href="https://direct.mit.edu/coli/article/doi/10.1162/coli_a_00506/118990/Topics-in-the-Haystack-Enhancing-Topic-Quality?searchresult=1">ISIM</a></td>
+      <td>ISIM</td>
       <td>Average cosine similarity of top words of a topic to an intruder word.</td>
     </tr>
     <tr>
-      <td><a href="https://direct.mit.edu/coli/article/doi/10.1162/coli_a_00506/118990/Topics-in-the-Haystack-Enhancing-Topic-Quality?searchresult=1">INT</a></td>
+      <td>INT</td>
       <td>For a given topic and a given intruder word, Intruder Accuracy is the fraction of top words to which the intruder has the least similar embedding among all top words.</td>
     </tr>
     <tr>
-      <td><a href="https://direct.mit.edu/coli/article/doi/10.1162/coli_a_00506/118990/Topics-in-the-Haystack-Enhancing-Topic-Quality?searchresult=1">ISH</a></td>
+      <td>ISH</td>
       <td>Calculates the shift in the centroid of a topic when an intruder word is replaced.</td>
     </tr>
     <tr>
-      <td><a href="https://direct.mit.edu/coli/article/doi/10.1162/coli_a_00506/118990/Topics-in-the-Haystack-Enhancing-Topic-Quality?searchresult=1">Expressivity</a></td>
+      <td>Expressivity</td>
       <td>Cosine Distance of topics to meaningless (stopword) embedding centroid</td>
     </tr>
     <tr>
-      <td><a href="https://link.springer.com/chapter/10.1007/978-3-030-80599-9_4">Embedding Topic Diversity</a></td>
+      <td>Embedding Topic Diversity</td>
       <td>Topic diversity in the embedding space</td>
     </tr>
     <tr>
-      <td><a href="https://direct.mit.edu/coli/article/doi/10.1162/coli_a_00506/118990/Topics-in-the-Haystack-Enhancing-Topic-Quality?searchresult=1">Embedding Coherence</a></td>
+      <td>Embedding Coherence</td>
       <td>Cosine similarity between the centroid of the embeddings of the stopwords and the centroid of the topic.</td>
     </tr>
     <tr>
-      <td><a href="https://aclanthology.org/E14-1056.pdf">NPMI</a></td>
+      <td>NPMI</td>
       <td>Classical NPMi coherence computed on the source corpus.</td>
     </tr>
   </tbody>
