@@ -68,12 +68,14 @@ class NPMI(BaseMetric):
         stopwords : list, optional
             A list of stopwords to exclude from analysis. Default includes GenSim, NLTK, and Scikit-learn stopwords.
         """
-        self.stopwords = stopwords
         if stopwords is None:
             if language != "chinese":
                 self.stopwords = STOPWORDS
             else:
                 raise ValueError(f"Please provide Chinese stopwords list!")
+        else:
+            with open(stopwords, 'r', encoding='UTF-8') as f:
+                self.stopwords = [line.strip() for line in f]
         self.language = language
         self.dataset = dataset
 
@@ -385,12 +387,14 @@ class PMI(BaseMetric):
         stopwords : list, optional
             A list of stopwords to exclude from analysis. Default includes GenSim, NLTK, and Scikit-learn stopwords.
         """
-        self.stopwords = stopwords
         if stopwords is None:
             if language != "chinese":
                 self.stopwords = STOPWORDS
             else:
                 raise ValueError(f"Please provide Chinese stopwords list!")
+        else:
+            with open(stopwords, 'r', encoding='UTF-8') as f:
+                self.stopwords = [line.strip() for line in f]
         self.language = language
         self.dataset = dataset
 

@@ -5,8 +5,6 @@
 
 <h2> Table of Contents </h2>
 
-
-- [🏃 Quick Start](#-quick-start)
 - [🚀 Installation](#-installation)
 - [📦 Available Models](#-available-models)
 - [📊 Available Metrics](#-available-metrics)
@@ -15,37 +13,13 @@
   - [🛠️ Preprocessing](#️-preprocessing)
   - [🚀 Model fitting](#-model-fitting)
   - [✅ Evaluation](#-evaluation)
-  - [🔍 Hyperparameter optimization](#-hyperparameter-optimization)
-<!-- - [📜 Citation](#-citation) -->
-- [📝 License](#-license)
-
-
-# 🏃 Quick Start
-
-Get started with STREAM-ZH in just a few lines of code:
-
-```python
-from stream_topic.models import KmeansTM
-from stream_topic.utils import TMDataset
-
-dataset = TMDataset(language="chinese", stopwords_path = '/stream_topic/utils/common_stopwords.txt')
-dataset.fetch_dataset("THUCNews_small")
-dataset.preprocess(model_type="KmeansTM")
-
-model = KmeansTM(embedding_model_name="TencentBAC/Conan-embedding-v1", stopwords_path = '/stream_topic/utils/common_stopwords.txt')# 
-model.fit(dataset, n_topics=10, language = "chinese")
-
-topics = model.get_topics()
-print(topics)
-```
-
 
 # 🚀 Installation
 
 You can install STREAM-ZH directly from PyPI:
-    ```bash
-    pip install stream_topic
-    ```
+```python
+pip install stream_topic
+```
 
 # 📦 Available Models
 STREAM-ZH inherits various neural and non-neural topic models provided by STREAM. Currently, the following models are implemented:
@@ -123,10 +97,8 @@ STREAM-ZH inherits various neural and non-neural topic models provided by STREAM
   </table>
 </div>
 
-
-
 # 📊 Available Metrics
-Since evaluating topic models, especially automatically, STREAM-ZH implements numerous evaluation metrics. Especially, the intruder based metrics, while they might take some time to compute, have shown great correlation with human evaluation. 
+STREAM-ZH inherits all the evaluation metrics of STREAM, including intruder, diversity and coherence metrics.
 <div align="center" style="width: 100%;">
   <table style="margin: 0 auto;">
   <thead>
@@ -172,7 +144,7 @@ Since evaluating topic models, especially automatically, STREAM-ZH implements nu
 
 
 # 🗂️ Available Datasets
-STREAM-ZH provides the following Chinese datasets for benchmark testing:
+STREAM-ZH provides the following preprocessed Chinese datasets for benchmark testing:
 <div align="center" style="width: 100%;">
   <table style="margin: 0 auto;">
   <thead>
@@ -211,7 +183,7 @@ STREAM-ZH provides the following Chinese datasets for benchmark testing:
       <td>337,902</td>
       <td>57,616</td>
       <td>10.2</td>
-      <td>Preprocessed a headline dataset</td>
+      <td>Preprocessed a news headline dataset</td>
     </tr>
     <tr>
       <td>TOUTIAO_small</td>
@@ -247,10 +219,10 @@ To use one of the available models for Chinese topic modeling, follow the simple
     from stream_topic.utils import TMDataset
     ```
 ## 🛠️ Preprocessing
-2. Get your dataset and preprocess for your model:
+2. Get the dataset and preprocess for your model:
     ```python
-    dataset = TMDataset(language="chinese", stopwords_path = '/stream_topic/utils/common_stopwords.txt')
-    dataset.fetch_dataset("THUCNews_small")
+    dataset = TMDataset(language="chinese", stopwords_path = 'stream_topic/utils/common_stopwords.txt')
+    dataset.fetch_dataset("THUCNews_small", dataset_path = "stream_ZH_topic_data/preprocessed_datasets/THUCNews", source = 'local')
     dataset.preprocess(model_type="KmeansTM")
     ```
 
@@ -262,11 +234,11 @@ The specified model_type is optional and further arguments can be specified. Def
 3. Choose the model you want to use and train it:
    
     ```python
-    model = KmeansTM(embedding_model_name="TencentBAC/Conan-embedding-v1", stopwords_path = '/stream_topic/utils/common_stopwords.txt')# 
-    model.fit(dataset, n_topics=10, language = "chinese")
+    model = KmeansTM(embedding_model_name="TencentBAC/Conan-embedding-v1", stopwords_path = 'stream_topic/utils/common_stopwords.txt')# 
+    model.fit(dataset, n_topics=14, language = "chinese")
     ```
 
-Depending on the model, check the documentation for hyperparameter settings. To get the topics, simply run:
+To get the topics, simply run:
 
 4. Get the topics:
     ```python
@@ -279,8 +251,8 @@ Specify the embedding model of Chinese
 
 ```python
 from stream_topic.metrics.metrics_config import MetricsConfig
-MetricsConfig.set_PARAPHRASE_embedder("/hongyi/stream/sentence-transformers/Conan-embedding-v1/")
-MetricsConfig.set_SENTENCE_embedder("/hongyi/stream/sentence-transformers/Conan-embedding-v1/")
+MetricsConfig.set_PARAPHRASE_embedder("TencentBAC/Conan-embedding-v1")
+MetricsConfig.set_SENTENCE_embedder("TencentBAC/Conan-embedding-v1")
 ```
 
 To evaluate your model simply use one of the metrics.
@@ -297,18 +269,12 @@ Scores for each topic are available via:
 metric.score_per_topic(topics)
 ```
 
-## 🔍 Hyperparameter optimization
-If you want to optimize the hyperparameters, simply run:
 ```python
-model.optimize_and_fit(
-    dataset,
-    min_topics=2,
-    max_topics=20,
-    criterion="aic",
-    n_trials=20,
-)
+metric =NPMI(dataset, language = "chinese", stopwords = 'stream_topic/utils/common_stopwords.txt')
+metric.score(topics)
 ```
 
-# 📝 License
-
-STREAM-ZH is released under the [MIT License](./LICENSE). © 2025 
+Scores for each topic are available via:
+```python
+metric.score_per_topic(topics)
+```
