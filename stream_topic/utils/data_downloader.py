@@ -102,7 +102,7 @@ class DataDownloader:
             True if embeddings are available, False otherwise.
         """
         if source == "github" and path is None:
-            BASE_URL = "https://raw.githubusercontent.com/mkumar73/stream_topic_data/main/datasets/pre_embedded_datasets/"
+            BASE_URL = "Anynomous"
             git_pkl_path = urljoin(
                 BASE_URL,
                 os.path.join(
@@ -293,7 +293,7 @@ class DataDownloader:
                 raise ValueError(
                     "Please provide the embedding model name to load embeddings."
                 )
-            BASE_URL = "https://raw.githubusercontent.com/mkumar73/stream_topic_data/main/datasets/pre_embedded_datasets/"
+            BASE_URL = "Anynomous"
             git_pkl_path = urljoin(
                 BASE_URL,
                 os.path.join(
@@ -318,7 +318,7 @@ class DataDownloader:
                 )
 
         else:
-            BASE_URL = "https://raw.githubusercontent.com/mkumar73/stream_topic_data/main/datasets/preprocessed_datasets/"
+            BASE_URL = "Anynomous"
             git_parquet_path = urljoin(
                 BASE_URL,
                 os.path.join(self.name, f"{self.name}.parquet").replace(
