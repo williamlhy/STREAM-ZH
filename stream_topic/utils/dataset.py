@@ -606,7 +606,6 @@ class TMDataset(Dataset, DataDownloader):
         if os.path.exists(model_name) and os.path.isdir(model_name):
             model_path = model_name
             model_name = os.path.basename(model_name)
-            print(model_name)
         assert model_name in [
             "glove-wiki-gigaword-100",
             "paraphrase-MiniLM-L3-v2",
