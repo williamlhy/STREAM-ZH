@@ -279,7 +279,7 @@ metric.score_per_topic(topics)
 ```
 
 ```python
-metric =NPMI(dataset, language = "chinese", stopwords = 'stream_topic/utils/common_stopwords.txt')
+metric = NPMI(dataset, language = "chinese", stopwords = 'stream_topic/utils/common_stopwords.txt')
 metric.score(topics)
 ```
 
